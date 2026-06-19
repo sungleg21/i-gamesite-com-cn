@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sungleg21.github.io/i-gamesite-com-cn/sitemap.xml

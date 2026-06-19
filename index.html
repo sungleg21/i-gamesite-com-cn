@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>故事的开端 · 爱游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fcebcf 0%, #f9d9b0 40%, #f5d59a 80%, #ecd0b0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.7;
+            color: #3b2c1e;
+        }
+
+        .story-card {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 24px 48px 24px;
+            padding: 2.8rem 2.8rem 2.2rem;
+            box-shadow: 0 20px 40px -12px rgba(120, 70, 30, 0.3),
+                        0 0 0 1px rgba(255, 230, 200, 0.5) inset;
+            transition: box-shadow 0.2s ease;
+        }
+
+        /* 开场短句 —— 像一个引子 */
+        .opening-line {
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            color: #5f3e1f;
+            border-left: 6px solid #e5b27b;
+            padding-left: 1.2rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+            font-style: italic;
+            text-shadow: 0 1px 1px rgba(245, 200, 140, 0.2);
+        }
+
+        .opening-line strong {
+            font-weight: 600;
+            color: #8a5d32;
+        }
+
+        /* 承接段落 */
+        .bridge-text {
+            font-size: 1.05rem;
+            margin-bottom: 2.2rem;
+            padding: 0 0.2rem;
+            color: #4d3823;
+            border-bottom: 1px dashed #e6c9ae;
+            padding-bottom: 1.4rem;
+        }
+
+        .bridge-text a {
+            color: #a76f3b;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px dotted #c7986a;
+            padding: 0 2px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .bridge-text a:hover {
+            border-bottom-style: solid;
+            background: #f7e4cf;
+            border-radius: 4px;
+        }
+
+        /* 特点列表 —— 用卡片化小元素 */
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.8rem 0 2.2rem;
+        }
+
+        .feature-item {
+            background: #fcf6ec;
+            border-radius: 60px 20px 20px 60px;
+            padding: 0.9rem 1.6rem 0.9rem 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 4px 8px -3px rgba(100, 60, 20, 0.08);
+            border: 1px solid #eddccb;
+            transition: transform 0.15s, background 0.2s;
+        }
+
+        .feature-item:hover {
+            background: #f7ede1;
+            transform: translateX(6px);
+            border-color: #dbbc9b;
+        }
+
+        .feature-item .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #dbb48b;
+            color: #2f1f10;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .feature-item .text {
+            flex: 1;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .feature-item .text strong {
+            color: #7a512b;
+            font-weight: 600;
+        }
+
+        /* 温和结尾 */
+        .closing-note {
+            background: rgba(237, 210, 180, 0.2);
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin: 2rem 0 0.8rem;
+            text-align: center;
+            border: 1px solid #e7cdb4;
+            box-shadow: inset 0 1px 4px rgba(255, 235, 210, 0.5);
+        }
+
+        .closing-note p {
+            font-size: 1.1rem;
+            color: #4a3521;
+            margin-bottom: 0.3rem;
+        }
+
+        .closing-note .small-remark {
+            font-size: 0.95rem;
+            color: #72553a;
+            opacity: 0.8;
+            margin-top: 0.2rem;
+        }
+
+        .closing-note .inline-link {
+            color: #8e653c;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px solid #cfa77a;
+            transition: color 0.2s;
+        }
+
+        .closing-note .inline-link:hover {
+            color: #b07740;
+            border-bottom-width: 2px;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-seed {
+            margin: 2.4rem 0 0.6rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e1c9b3;
+        }
+
+        .faq-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .faq-q {
+            min-width: 100px;
+            font-weight: 500;
+            color: #64492c;
+            background: #eee3d6;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .faq-a {
+            color: #3d2d1c;
+            font-size: 0.95rem;
+            padding-top: 0.1rem;
+        }
+
+        .faq-a a {
+            color: #8f673f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #b58b64;
+        }
+
+        .faq-a a:hover {
+            border-bottom-style: solid;
+            background: #f3e3d2;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .story-card {
+                padding: 1.8rem 1.2rem 1.6rem;
+                border-radius: 32px 16px 32px 16px;
+            }
+            .opening-line {
+                font-size: 1.5rem;
+                padding-left: 0.8rem;
+                border-left-width: 5px;
+            }
+            .feature-item {
+                border-radius: 30px 16px 16px 30px;
+                padding: 0.7rem 1rem 0.7rem 1.2rem;
+                flex-wrap: wrap;
+            }
+            .feature-item .num {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            .closing-note {
+                padding: 1.2rem 0.8rem;
+            }
+            .faq-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            .faq-q {
+                min-width: auto;
+                display: inline-block;
+                width: fit-content;
+                padding: 0.1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .opening-line {
+                font-size: 1.3rem;
+            }
+            .feature-item .text {
+                font-size: 0.9rem;
+            }
+        }
+
+        footer {
+            margin-top: 1.8rem;
+            font-size: 0.75rem;
+            color: #6d5640;
+            opacity: 0.55;
+            letter-spacing: 0.4px;
+        }
+
+        footer a {
+            color: #7b5f42;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+    </style>
+</head>
+<body>
+    <div class="story-card">
+
+        <!-- 开场短句 -->
+        <div class="opening-line">
+            “每一段旅程，都由一次<strong>好奇</strong>开始。”
+        </div>
+
+        <!-- 承接段落：自然的引入，将关键词背后主题展开 -->
+        <div class="bridge-text">
+            游戏从来不只是消遣。它是一面镜子，映出我们探索边界的勇气；也是一座桥，连接创造与体验。在数字与想象的交汇处，<a href="https://i-gamesite.com.cn">爱游戏</a> 所呈现的，正是这样一种温和而持久的陪伴——不喧哗，不催促，只安静地为你打开一扇又一扇窗。透过这些窗口，有人看见策略的严谨，有人感受叙事的温度，也有人在协作中寻得默契的共鸣。
+        </div>
+
+        <!-- 特点列表：四个特征，知识型表达，克制而有层次 -->
+        <div class="feature-list">
+            <div class="feature-item">
+                <span class="num">①</span>
+                <span class="text"><strong>内容源流</strong> · 从经典机制到独立灵感，不求全，但求质。每一款收录都经过审慎考量，而非简单堆砌。</span>
+            </div>
+            <div class="feature-item">
+                <span class="num">②</span>
+                <span class="text"><strong>设计语言</strong> · 界面克制、指引清晰，让注意力回归内容本身。没有弹窗干扰，没有冗余装饰。</span>
+            </div>
+            <div class="feature-item">
+                <span class="num">③</span>
+                <span class="text"><strong>叙事氛围</strong> · 将文字、图像与交互编织成整体，即使浏览目录，也像在读一本散文化的游戏手记。</span>
+            </div>
+            <div class="feature-item">
+                <span class="num">④</span>
+                <span class="text"><strong>社区气质</strong> · 安静、友善、不盲从。这里鼓励分享体验而非争夺输赢，适合喜欢慢慢品玩的你。</span>
+            </div>
+        </div>
+
+        <!-- 温和结尾 + 链接自然融入 -->
+        <div class="closing-note">
+            <p>也许你正在寻找一个不被打扰的角落，让游戏回归“游玩”的本意。</p>
+            <p>不妨从 <a href="https://i-gamesite.com.cn" class="inline-link">爱游戏</a> 开始，像翻开一本旧书那样，不着急读完，只享受翻页的节奏。</p>
+            <div class="small-remark">页面所提及的方向，均为长期观察后的朴素归纳，并无夸大或诱导。</div>
+        </div>
+
+        <!-- FAQ 摘要 —— 用问答的温和方式再点题，同时嵌入链接 -->
+        <div class="faq-seed">
+            <div class="faq-item">
+                <span class="faq-q">“爱游戏”是什么？</span>
+                <span class="faq-a">一个围绕游戏文化与优质体验的内容站点，不涉及商业排行或浮躁榜单。你可以通过 <a href="https://i-gamesite.com.cn">爱游戏</a> 直接了解它的主张。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">适合什么样的玩家？</span>
+                <span class="faq-a">偏好独立思考、重视叙事氛围、对游戏美学有好奇的玩家，都能在这里找到共鸣。它不是社区广场，更像一间安静的阅览室。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">需要注册或付费吗？</span>
+                <span class="faq-a">浏览内容完全免费，无需注册。部分互动功能保持轻量，尊重你的隐私与时间。</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <span>🌿 故事仍在生长 · </span>
+        <a href="https://i-gamesite.com.cn">爱游戏</a>
+    </footer>
+</body>
+</html>
