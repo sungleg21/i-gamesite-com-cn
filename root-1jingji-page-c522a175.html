@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>稳定、清晰的入口 · 一竞技</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+      background: #f6f9fc;
+      color: #1f2c3a;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* 网格背景 + 微妙的卡片层次 */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0, 170, 140, 0.04) 1px, transparent 1px),
+        linear-gradient(to right, rgba(0, 170, 140, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem 0;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0a2e2a;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #3c5a5a;
+      max-width: 600px;
+      margin: 0.5rem auto 1.8rem auto;
+      font-weight: 350;
+    }
+
+    .hero .mark {
+      display: inline-block;
+      background: #d0eee8;
+      color: #0a4d42;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      font-weight: 450;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 50, 40, 0.05), 0 1px 3px rgba(0, 30, 20, 0.04);
+      transition: all 0.15s ease;
+      border: 1px solid rgba(0, 150, 130, 0.08);
+      backdrop-filter: blur(2px);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(0, 100, 80, 0.1);
+      border-color: rgba(0, 170, 140, 0.25);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      color: #0b3a34;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      color: #2e4949;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .card .badge {
+      background: #e5f4f0;
+      color: #056354;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    /* 说明区域 */
+    .explain-block {
+      background: #ffffffdd;
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 2rem 2rem;
+      margin: 2.5rem 0;
+      border: 1px solid rgba(0, 140, 120, 0.2);
+      box-shadow: 0 2px 10px rgba(0, 60, 50, 0.03);
+    }
+
+    .explain-block h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #0a3d35;
+      margin-bottom: 1rem;
+      border-left: 4px solid #00aa8c;
+      padding-left: 1rem;
+    }
+
+    .explain-block p {
+      margin-bottom: 1rem;
+      color: #1d3a36;
+      max-width: 720px;
+    }
+
+    .explain-block strong {
+      color: #086655;
+      font-weight: 500;
+    }
+
+    .inline-link {
+      color: #007f6a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b0d9cf;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .inline-link:hover {
+      color: #005c4a;
+      border-bottom-color: #007f6a;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      margin: 2.8rem 0 2.2rem 0;
+      background: #f0f8f5;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      color: #0b4a3f;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #d3e8e0;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 550;
+      color: #0d3d35;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-item .a {
+      color: #2a4d46;
+      font-size: 0.88rem;
+      max-width: 600px;
+    }
+
+    /* 底部 */
+    .footer {
+      margin-top: 3rem;
+      padding: 1.5rem 0 0.8rem 0;
+      border-top: 1px solid #cde0da;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #3c645b;
+    }
+
+    .footer a {
+      color: #007f6a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer .muted {
+      color: #5b7a72;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 540px) {
+      .page {
+        padding: 1.5rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero .sub {
+        font-size: 1rem;
+      }
+
+      .card-grid {
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .explain-block {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .faq-summary {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .card h3 {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+  <div class="page">
+
+    <!-- hero 区 -->
+    <section class="hero">
+      <h1>一竞技 · 稳定的入口</h1>
+      <p class="sub">从清晰的页面开始，每一次打开都是确切的路径。</p>
+      <span class="mark">持续 · 安静 · 可依赖</span>
+    </section>
+
+    <!-- 优势区：网格卡片 -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>
+          <span>⌨️</span> 结构直接
+        </h3>
+        <p>页面层级经过梳理，核心区块一目了然。无论从哪个设备接入，到达目标信息的步骤都很少。</p>
+        <span class="badge">低认知负荷</span>
+      </div>
+      <div class="card">
+        <h3>
+          <span>🌿</span> 视觉沉淀
+        </h3>
+        <p>蓝绿色调与留白配合，减少不必要干扰。长时间浏览也不容易感到疲劳，焦点始终在内容上。</p>
+        <span class="badge">舒适对比</span>
+      </div>
+      <div class="card">
+        <h3>
+          <span>🔗</span> 入口确定
+        </h3>
+        <p>每个链接、每个按钮都对应明确路径。没有模糊跳转，也不会有意外的中断。你所见即所达。</p>
+        <span class="badge">可预测</span>
+      </div>
+      <div class="card">
+        <h3>
+          <span>📱</span> 适配自然
+        </h3>
+        <p>从宽屏到小屏，布局重新流动，卡片和文字会自动调整。移动端操作同样顺手、不局促。</p>
+        <span class="badge">响应式</span>
+      </div>
+    </div>
+
+    <!-- 说明区：从“稳定入口”角度展开 -->
+    <section class="explain-block">
+      <h2>关于入口的叙述</h2>
+      <p>
+        一个网站最基础也最容易被忽略的，是入口的稳定性。所谓稳定，不只是服务器在线，更是页面结构始终符合预期——导航不随意变化，主要功能位置固定，返回路径清晰。
+      </p>
+      <p>
+        我们花了一些精力梳理 <strong>一竞技</strong> 的页面布局，让每个区块都承担明确角色。无论是首次浏览还是日常使用，都不需要重新适应。从 hero 区到下方卡片，从说明区域到常见问题摘要，每一段内容都围绕一个核心：你能够快速理解当前页面在说什么，以及下一步可以做什么。
+      </p>
+      <p>
+        如果你希望直接查看主要页面，可以前往 <a href="https://root-1jingji.com" class="inline-link">一竞技</a>。目前页面结构保持克制，后续也会延续这个方向——增加内容之前，先确认入口依然简单。
+      </p>
+      <p style="margin-top: 0.8rem; font-style: italic; color: #3c6a5e;">
+        —— 一个足够稳定的入口，比许多花哨的功能更值得依赖。
+      </p>
+    </section>
+
+    <!-- FAQ 摘要：与页面入口和结构相关 -->
+    <section class="faq-summary">
+      <h2><span>⁉️</span> 关于页面与访问 · 简短说明</h2>
+
+      <div class="faq-item">
+        <span class="q">这个页面主要解决什么问题？</span>
+        <div class="a">提供一个指向 <strong>一竞技</strong> 的清晰、无干扰的入口，同时展示当前页面的结构逻辑。适合第一次了解或需要快速定位的用户。</div>
+      </div>
+      <div class="faq-item">
+        <span class="q">移动端和桌面端体验一致吗？</span>
+        <div class="a">页面采用响应式设计，卡片、文字间距、按钮大小都会根据屏幕宽度自动调整。在手机和电脑上都能获得相对一致的阅读感受。</div>
+      </div>
+      <div class="faq-item">
+        <span class="q">为什么强调“稳定入口”？</span>
+        <div class="a">许多网站频繁改动导航或隐藏关键链接，导致用户每次都需要重新寻找。我们保持页面区块固定，重要的跳转（例如首页链接）始终在可预期位置。</div>
+      </div>
+      <div class="faq-item">
+        <span class="q">未来页面会增加更多内容吗？</span>
+        <div class="a">会，但增加时会保持当前的结构风格。新内容会以卡片或独立区块的形式加入，不会破坏已有的浏览节奏。更新会提前说明。</div>
+      </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+      <p>页面入口 · <a href="https://root-1jingji.com">一竞技</a></p>
+      <p class="muted">以稳定为线索，让访问回归简单。</p>
+    </footer>
+
+  </div>
+</body>
+</html>
