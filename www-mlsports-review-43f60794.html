@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米兰体育 · 日常查询与对照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f2f4f6;
+            color: #1f2a3a;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* Hero */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3rem 2.5rem 2.8rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecf0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+            color: #15212e;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #546e7a;
+            max-width: 550px;
+            margin: 0 auto 0.1rem;
+            font-weight: 350;
+            line-height: 1.6;
+        }
+
+        .hero .lead {
+            font-size: 1rem;
+            color: #607d8b;
+            margin-top: 1.1rem;
+            border-top: 1px solid #eef2f6;
+            padding-top: 1.2rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e8ecf0;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 470;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #1a2a3a;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #f0f3f6;
+            display: inline-block;
+        }
+
+        .card p {
+            margin-bottom: 1.2rem;
+            color: #2c3e50;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 特点列表 — 更安静的排版 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0 0.75rem 1.8rem;
+            position: relative;
+            border-bottom: 1px solid #f0f2f5;
+            color: #2a3b4c;
+            font-weight: 380;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #8fa3b3;
+            font-weight: 300;
+        }
+
+        .soft-link {
+            color: #2d618c;
+            text-decoration: none;
+            border-bottom: 1px solid #d0d9e2;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .soft-link:hover {
+            border-bottom-color: #2d618c;
+            color: #123a5e;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef3f8;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #3f5b70;
+            margin-right: 0.3rem;
+        }
+
+        .quiet-ref {
+            margin-top: 1.2rem;
+            font-size: 0.9rem;
+            color: #5d7385;
+            background: #f8fafc;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            border-left: 3px solid #d3dee8;
+        }
+
+        /* FAQ 摘要 */
+        .faq-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #eeeef2;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 460;
+            margin-bottom: 0.2rem;
+            color: #1f2e3c;
+        }
+
+        .faq-a {
+            color: #4a5f70;
+            font-size: 0.95rem;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #e5e9ef;
+            margin-top: 0.8rem;
+            text-align: center;
+            color: #3a4f5e;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.01);
+        }
+
+        .closing a {
+            color: #1f4e79;
+            text-decoration: none;
+            border-bottom: 1px solid #cbd6e2;
+        }
+
+        .closing a:hover {
+            border-bottom-color: #1f4e79;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #dbe1e8, transparent);
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .feature-list li {
+                padding-left: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 开场短句 -->
+    <div class="hero">
+        <h1>米兰体育</h1>
+        <div class="sub">日常对照 · 信息延伸 · 安静阅读</div>
+        <div class="lead">
+            一个适合在浏览器里随手打开、用来查询和比对的页面。
+            没有过度的装饰，只有克制的叙述与清晰的分类。
+        </div>
+    </div>
+
+    <!-- 承接段落：从日常查询切入 -->
+    <div class="card">
+        <h2>查找与对照</h2>
+        <p>
+            很多时候我们打开一个页面，不是为了深度浏览，而是想快速找一个条目、对比一组数据，或者确认某个细节。
+            从这种寻常的查询习惯出发，<a href="https://www-mlsports.com" class="soft-link">米兰体育</a> 
+            提供了相对规整的信息结构——无论是赛事统计、队伍概况还是基础档案，都可以在几次点击内定位到。
+        </p>
+        <p>
+            相比于大而全的门户，这里更偏向于“查阅感”：简洁的标题层级，克制的配色，以及不过分拥挤的排版。
+            你可以在需要的时候打开它，完成对照后自然离开；下一次再回来，布局依然熟悉，不必重新适应。
+        </p>
+        <div class="quiet-ref">
+            <span class="tag">日常</span>
+            <span class="tag">对照</span>
+            <span class="tag">延伸</span>
+            一个页面如果能同时满足快速定位和适度延伸，就已经足够。
+        </div>
+    </div>
+
+    <!-- 特点列表：卡片 + 细边框柔和阴影 -->
+    <div class="card">
+        <h2>页面特点</h2>
+        <ul class="feature-list">
+            <li>信息层级清晰：标题、段落、列表之间留出呼吸感，视觉流动自然</li>
+            <li>低干扰配色：浅灰背景搭配细边框，阴影柔和，阅读时不易疲劳</li>
+            <li>模块化分区：每个卡片独立承载一段内容，便于对照和跳读</li>
+            <li>响应式适配：在手机和桌面端都能保持舒适的版心与字号</li>
+            <li>克制叙述：不堆砌卖点，只陈述事实，让用户自己判断</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #546e7a;">
+            以上这些特点并非标榜，而是一种选择——在信息过载的时代，留出一些安静的角落。
+        </p>
+    </div>
+
+    <!-- 场景 & 延伸阅读：FAQ 摘要形式 -->
+    <div class="card">
+        <h2>常见查询场景</h2>
+        <div class="faq-item">
+            <div class="faq-q">—— 想核对联赛积分或近期战绩</div>
+            <div class="faq-a">可以直接在首页找到对应联赛入口，列表按照更新时间排列，通常两到三次点击即可到达详细页面。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">—— 需要了解某支队伍的阵容变化</div>
+            <div class="faq-a">队伍页面提供了基础名单与近期变动标记，适合横向对比。如果需要深度数据，可以搭配其他信源交叉验证。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">—— 延伸阅读：从比赛延伸到背景信息</div>
+            <div class="faq-a">部分条目附有简短摘要或相关链接，方便你在查询之余向更广的领域自然延伸。这些补充并不喧宾夺主，只是提供多一个视角。</div>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #587386;">
+            上述场景只是举例，实际使用时你可以根据自身需要灵活跳转。一个好的工具页面，应当适应人的习惯，而非反过来。
+        </p>
+    </div>
+
+    <!-- 温和结尾 + 再次融入链接 -->
+    <div class="closing">
+        <p>
+            每次打开 <a href="https://www-mlsports.com">米兰体育</a>，你可以只做一件事：查询、对照、然后合上页面。
+            它不追求你停留，只希望你在需要时能找到。
+        </p>
+        <hr style="width: 50px; margin: 1rem auto;">
+        <p style="color: #607d8b; font-size: 0.85rem;">
+            一个安静的起点，胜过喧嚣的终点。
+        </p>
+    </div>
+
+    <!-- 极小的脚注（不算章节，仅做页面收束） -->
+    <div style="text-align: center; margin-top: 1.8rem; font-size: 0.75rem; color: #9aafbf; letter-spacing: 0.5px;">
+        —— 日常对照 · 延伸阅读 ——
+    </div>
+
+</div>
+</body>
+</html>
